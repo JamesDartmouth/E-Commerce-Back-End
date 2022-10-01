@@ -4,20 +4,19 @@ const { Product, Category, Tag, ProductTag } = require('../../models');
 // The `/api/products` endpoint
 
 
-
-// get all products
-router.get('/', (req, res) => {
-  // find all products
-  // be sure to include its associated Category and Tag data
-});
+// // get all products
+// router.get('/', (req, res) => {
+//   // find all products
+//   // be sure to include its associated Category and Tag data
+// });
 
 
 router.get('/', async (req, res) => {
   try {
     const productData = await Product.findAll(
 
-      // do i need a first paramter? Do i need only Product Data without 'throuhg"?---------------
-      {include: [{ model: Tag, through: ProductTag, as: 'tag_data'} , {model: Category, as 'category_data' }]}
+      // do i need a first paramter? Do i need only Product Data without 'throuhg"?----------------------
+      {include: [{ model: Tag, through: ProductTag, as: 'tag_data'}, {model: Category, as: 'category_data'}]}
     );
     res.status(200).json(tagData);
   } catch (err) {
@@ -36,8 +35,8 @@ router.get('/:id', async (req, res) => {
   try {
     const productData = await Product.findByPk(req.params.id, {  
 
-      // do i need a first paramter? Do i need only Product Data without 'throuhg"?---------------
-      include: [{ model: Tag, through: ProductTag, as: 'tag_data'} , {model: Category, as 'category_data' }]
+      // do i need a first paramter? Do i need only Product Data without 'throuhg"?-------------------------------
+      include: [{ model: Tag, through: ProductTag, as: 'tag_data'}, {model: Category, as: 'category_data' }]
     });
 
     if (!productData) {
@@ -63,7 +62,12 @@ router.post('/', (req, res) => {
       tagIds: [1, 2, 3, 4]
     }
   */
-  Product.create(req.body)
+  Product.create( {
+    product_name: "Basketball",
+    price: 200.00,
+    stock: 3,
+    tagIds: [1, 2, 3, 4]
+  })
     .then((product) => {
       // if there's product tags, we need to create pairings to bulk create in the ProductTag model
       if (req.body.tagIds.length) {

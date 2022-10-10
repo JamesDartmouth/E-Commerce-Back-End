@@ -7,14 +7,16 @@ An application that demonstrates the back-end of an E-commerce platform. Users c
 ## Usage
 
 
-User can find deployed app at [Deployed](https://jamesdartmouth.github.io/Team-Profile-Generator/)
+User can find deployed app at [Deployed](https://jamesdartmouth.github.io/E-Commerce-Back-End/)
 
-Repot can be found at [Repo](https://github.com/JamesDartmouth/Team-Profile-Generator)
+Repot can be found at [Repo](https://github.com/JamesDartmouth/E-Commerce-Back-End/settings/pages)
 
-Screenshots.
-
-[Screenshot](./assets/Screenshot.png)
-[video](./assets/Team%20profile%20generator.webm)
+[Getting Started Video](./assets/Getting%20Started%20gif.gif)
+[GET All video](./assets/GET%20ALL%20gif.gif)
+[GET By ID video](./assets/GET%20by%20ID%20gif.gif)
+[Categ Post Put Delete video](./assets/Category%20Post%20Put%20Delete%20gif.gif)
+[Tag Post Put Delete video](./assets/Tag%20Post%20Put%20Delete%20gif.gif)
+[Prod Post Put Delete video](./assets/Product%20Post%20Put%20Delete%20gif.gif)
 
 
 ## Credits
@@ -32,23 +34,3 @@ Thank you to the Instructors, TAs, and Tutors
 
 
 ## Tests
-
-
-
-
-
-AS A manager at an internet retail company
-I WANT a back end for my e-commerce website that uses the latest technologies
-SO THAT my company can compete with other e-commerce companies
-
-GIVEN a functional Express.js API
-WHEN I add my database name, MySQL username, and MySQL password to an environment variable file
-THEN I am able to connect to a database using Sequelize
-WHEN I enter schema and seed commands
-THEN a development database is created and is seeded with test data
-WHEN I enter the command to invoke the application
-THEN my server is started and the Sequelize models are synced to the MySQL database
-WHEN I open API GET routes in Insomnia Core for categories, products, or tags
-THEN the data for each of these routes is displayed in a formatted JSON
-WHEN I test API POST, PUT, and DELETE routes in Insomnia Core
-THEN I am able to successfully create, update, and delete data in my database

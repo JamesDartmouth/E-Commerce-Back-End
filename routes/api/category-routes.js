@@ -14,7 +14,7 @@ router.get('/', async (req, res) => {
     const categoryData = await Category.findAll(
 
       // do i need a first paramter? Do i need only Product Data without 'throuhg"?---------------
-      {include: [{ model: Product, as: 'product_data' }]}
+    {include: [{ model: Product}]}
     );
     res.status(200).json(categoryData);
   } catch (err) {
@@ -31,8 +31,17 @@ router.get('/:id', async (req, res) => {
   try {
     const categoryData = await Category.findByPk(req.params.id, {  
 
+      // where: {
+      //   id: req.params.id,
+      // },
+      // include: [
+      //   {
+      //     model: Product,
+      //   },
+      // ],
+
       // do i need a first paramter? Do i need only Product Data without 'throuhg"?---------------
-      include: [{ model: Product, as: 'product_data' }]
+      include: [{ model: Product }]
     });
 
     if (!categoryData) {
@@ -67,22 +76,23 @@ router.post('/', async (req, res) => {
 // });
 // UPDATE Category----------------------------------------------------
 
-
-router.put('/:d', (req, res) => {
-  Category.update(
-    {
-      category_name: req.body.category_name,
-    },
-    {
+router.put('/:id', async (req, res) => {
+  // update a tag's name by its `id` value
+  try {
+    const updatedCategory = await Category.update(req.body, {
       where: {
-        id : req.params.id,
+        id: req.params.id,
       },
+    });
+    if (!updatedCategory) {
+      res.status(404).json({ message: 'No Tag found with this id!' });
+      return;
     }
-  )
-    .then((updatedCategory) => {
-      res.json(updatedCategory);
-    })
-    .catch((err) => res.json(err));
+    res.status(200).json(updatedCategory);
+    } catch (err) {
+    res.status(500).json(err);
+    }
+
 });
 
 

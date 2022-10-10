@@ -1,6 +1,7 @@
 const router = require('express').Router();
 const { Tag, Product, ProductTag } = require('../../models');
 
+
 // The `/api/tags` endpoint-----------------------------------------------------------
 
 
@@ -14,7 +15,7 @@ router.get('/', async (req, res) => {
     const tagData = await Tag.findAll(
 
       // do i need a first paramter? Do i need only Product Data without 'throuhg"?---------------
-      {include: [{ model: Product, through: ProductTag, as: 'product_data' }]}
+      {include: [{ model: Product, through: ProductTag }]}
     );
     res.status(200).json(tagData);
   } catch (err) {
@@ -33,8 +34,17 @@ router.get('/:id', async (req, res) => {
   try {
     const tagData = await Tag.findByPk(req.params.id, {  
 
+         // where: {
+      //   id: req.params.id,
+      // },
+      // include: [
+      //   {
+      //     model: Product,
+      //   },
+      // ],
+
       // do i need a first paramter? Do i need only Product Data without 'throuhg"?---------------
-      include: [{ model: Product, through: ProductTag, as: 'product_data' }]
+      include: [{ model: Product, through: ProductTag}]
     });
 
     if (!tagData) {
@@ -68,22 +78,32 @@ router.post('/', async (req, res) => {
 // UPDATE TAG-----------------------------------------------------------
 
 
-router.put('/:d', (req, res) => {
-  Tag.update(
-    // Is this right?--------------------------------------------------
-    {
-      tag_name: req.body.tag_name,
-    },
-    {
+router.put('/:id', async (req, res) => {
+  // update a tag's name by its `id` value
+  try {
+    const tagData = await Tag.update(req.body, {
       where: {
-        id : req.params.id,
+        id: req.params.id,
       },
+
+      // {
+      //   tag_name: req.body.tag_name,
+      // },
+      // {
+      //   where: {
+      //     id : req.params.id,
+      //   },
+      // }
+    });
+    if (!tagData) {
+      res.status(404).json({ message: 'No Tag found with this id!' });
+      return;
     }
-  )
-    .then((updatedTag) => {
-      res.json(updatedTag);
-    })
-    .catch((err) => res.json(err));
+    res.status(200).json(tagData);
+    } catch (err) {
+    res.status(500).json(err);
+    }
+
 });
 
 

@@ -1,5 +1,41 @@
 # E-Commerce-Back-End
 
+## Description
+
+An application that demonstrates the back-end of an E-commerce platform. Users can Create, Read, Update, and Delete product, tag, and category data.
+
+## Usage
+
+
+User can find deployed app at [Deployed](https://jamesdartmouth.github.io/Team-Profile-Generator/)
+
+Repot can be found at [Repo](https://github.com/JamesDartmouth/Team-Profile-Generator)
+
+Screenshots.
+
+[Screenshot](./assets/Screenshot.png)
+[video](./assets/Team%20profile%20generator.webm)
+
+
+## Credits
+
+Thank you to the Instructors, TAs, and Tutors
+
+
+## License
+
+## Badges
+
+## Features
+
+## How to Contribute
+
+
+## Tests
+
+
+
+
 
 AS A manager at an internet retail company
 I WANT a back end for my e-commerce website that uses the latest technologies
